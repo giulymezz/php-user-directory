@@ -112,7 +112,7 @@ function sortLink(string $field, ?string $currentSort, string $currentDir, array
     </table>
 
     <div class="back-btn-container">
-        <a href="index.php" class="back-btn">Back</a>
+        <a class="back-btn" href="/">Back</a>
     </div>
 
 </div>
