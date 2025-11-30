@@ -1,0 +1,168 @@
+.page-title {
+    text-align: center;
+    color: #c40000;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.filter-form {
+    width: 380px;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-form h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.filter-form label {
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.filter-form input,
+.filter-form select {
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.btn {
+    margin-top: 25px;
+    padding: 12px;
+    font-size: 16px;
+    background: #0078ff;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #005fcc;
+}
+
+.user-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.user-table th.sortable {
+    cursor: pointer;
+    background: #f7f7f7;
+}
+
+.user-table th.sortable:hover {
+    background: #ececec;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.warning-box p {
+    margin: 0;
+    color: #a00;
+}
+
+.table-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.user-table th {
+    background: #f0f0f0;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.user-table th a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-table th a:hover,
+.user-table th a:visited,
+.user-table th a:active,
+.user-table th a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #0078ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.back-btn-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.back-btn {
+    background: #0078ff;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #005fcc;
+}
