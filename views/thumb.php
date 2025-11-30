@@ -42,5 +42,5 @@ $users = $data['users'];
 </div>
 
 <div class="back-btn-container">
-    <a class="back-btn" href="/">Back</a>
+    <a class="back-btn" href="/">BACK</a>
 </div>
