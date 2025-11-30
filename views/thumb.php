@@ -20,13 +20,16 @@ $users = $data['users'];
     <?php foreach ($users as $u): ?>
         <div style="border:1px solid #ccc; padding:10px; width:150px; text-align:center;">
             <div>
-                <img src="<?= htmlspecialchars($u->picture) ?>" alt="" />
+                <img 
+                    src="<?= htmlspecialchars($u->picture) ?>" 
+                    alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
+                />
             </div> 
             <div>
-                <?= htmlspecialchars($u->name) ?>
+                <?= htmlspecialchars(ucfirst($u->name)) ?>
             </div>  
             <div>
-                <?= htmlspecialchars($u->surname) ?>
+                <?= htmlspecialchars(ucfirst($u->surname)) ?>
             </div>
             <div>
                 <?php
