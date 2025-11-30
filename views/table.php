@@ -1,8 +1,12 @@
 <?php
-/** @var array $data */   
+require_once __DIR__ . '/../ImageHelper.php';
+
+/** @var array $data */ 
 $users = $data['users'];
 $sort = $data['sort'];
 $dir = $data['dir'];
+
+$cacheDir = getCacheDir();
 
 function sortLink(string $field, ?string $currentSort, string $currentDir, array $data): string {
     $newDir = 'asc';
@@ -78,6 +82,15 @@ function sortLink(string $field, ?string $currentSort, string $currentDir, array
         </thead>
         <tbody>
             <?php foreach ($users as $u): ?>
+
+                <?php
+                    $originalPath = $u->picture;
+                    $fileName = basename($originalPath);
+                    $cachePath = $cacheDir . '/' . $fileName;
+
+                    generateThumbnail($originalPath, $cachePath);
+                ?>
+
                 <tr>
                     <td>
                         <?= htmlspecialchars($u->id) ?>
@@ -99,7 +112,7 @@ function sortLink(string $field, ?string $currentSort, string $currentDir, array
                     </td>
                     <td>
                         <img 
-                            src="<?= htmlspecialchars($u->picture) ?>" 
+                            src="data/cache/<?= htmlspecialchars($fileName) ?>" 
                             alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
                         />
                     </td>

@@ -1,5 +1,10 @@
 <?php
+require_once __DIR__ . '/../ImageHelper.php';
+
+/** @var array $data */
 $users = $data['users']; 
+
+$cacheDir = getCacheDir();
 ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
@@ -18,10 +23,19 @@ $users = $data['users'];
 
 <div style="display:flex; flex-wrap:wrap; gap:20px;">
     <?php foreach ($users as $u): ?>
+
+        <?php
+            $originalPath = $u->picture;
+            $fileName = basename($originalPath);
+            $cachePath = $cacheDir . '/' . $fileName;
+
+            generateThumbnail($originalPath, $cachePath);
+        ?>
+
         <div style="border:1px solid #ccc; padding:10px; width:150px; text-align:center;">
             <div>
                 <img 
-                    src="<?= htmlspecialchars($u->picture) ?>" 
+                    src="data/cache/<?= htmlspecialchars($fileName) ?>" 
                     alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
                 />
             </div> 
@@ -38,7 +52,7 @@ $users = $data['users'];
                 ?>
             </div>
         </div>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
 
 <div class="back-btn-container">
