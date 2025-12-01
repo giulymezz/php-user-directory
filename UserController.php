@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/UserService.php';
+require_once __DIR__ . '/ImageHelper.php';
+
 class UserController extends UserService {  
     public function showUserAction() {
 
@@ -26,15 +29,16 @@ class UserController extends UserService {
             $dir = $_GET['dir'] ?? 'asc';
             $users = $this->sortUsers($users, $sort, $dir, $warnings);
         }
-
-        foreach ($users as $user) {
-            $user->picture = $this->resizeImageTo100($user->picture);
-        }
         
         $data = [
             'users' => $users,
             'sort' => $sort,
             'dir' => $dir,
+            'active' => $active,
+            'from' => $fromStr,
+            'to' => $toStr,
+            'name' => $name,
+            'surname' => $surname,
             'warnings' => $warnings,
         ];
 
@@ -44,11 +48,6 @@ class UserController extends UserService {
             require __DIR__ . '/views/table.php';
         }
     }
-
-
-    /* =======================
-       Metodi di filtro
-       ======================= */
 
     protected function filterByActive(array $users, ?int $active): array {
         if ($active === null) {
@@ -109,11 +108,6 @@ class UserController extends UserService {
             return $okName && $okSurname;
         });
     }
-
-
-    /* =======================
-       Sorting per la tabella
-       ======================= */
     
     protected function sortUsers(array $users, ?string $sort, string $dir, array &$warnings = []): array {
         if (!$sort) {
@@ -148,62 +142,5 @@ class UserController extends UserService {
         });
 
         return $users;
-    }
-
-
-    /* =======================
-       Resize immagini a 100px
-       ======================= */
-
-    protected function resizeImageTo100(string $srcPath): string {
-        $fullSrc = __DIR__ . '/' . $srcPath;
-
-        if (!file_exists($fullSrc)) {
-            return $srcPath;
-        }
-
-        $cacheDir = __DIR__ . '/data/cache';
-
-        if (!is_dir($cacheDir)) {
-            if (!mkdir($cacheDir, 0777, true) && !is_dir($cacheDir)) {
-                throw new \RuntimeException("Impossibile creare la cartella cache: $cacheDir");
-            }
-        }
-
-        if (!is_writable($cacheDir)) {
-            throw new \RuntimeException("La cartella cache non è scrivibile: $cacheDir");
-        }
-
-        $filename = basename($srcPath);
-        $destPath = $cacheDir . '/' . $filename;
-
-        if (file_exists($destPath)) {
-            return 'data/cache/' . $filename;
-        }
-
-        $srcImg = imagecreatefromjpeg($fullSrc);
- 
-        $origW = imagesx($srcImg);   
-        $origH = imagesy($srcImg);
-
-        $newW = 100;   
-        $ratio = $origH / $origW;
-        $newH = (int)round($newW * $ratio);
-
-        $dstImg = imagecreatetruecolor($newW, $newH);
-
-        imagecopyresampled(
-            $dstImg, $srcImg,
-            0, 0, 0, 0,
-            $newW, $newH,
-            $origW, $origH
-        );
-        
-        imagejpeg($dstImg, $destPath, 90);
-
-        imagedestroy($srcImg);
-        imagedestroy($dstImg);
-
-        return 'data/cache/' . $filename;
     }
 }   
