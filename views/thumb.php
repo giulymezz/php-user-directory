@@ -7,54 +7,57 @@ $users = $data['users'];
 $cacheDir = getCacheDir();
 ?>
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 
-<?php if (!empty($data['warnings'])): ?>
-    <div class="warning-box">
-        <?php foreach ($data['warnings'] as $w): ?>
-            <p><?= htmlspecialchars($w) ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+<div class="container">
 
-<h1 class="page-title">USERS</h1>
+    <?php if (!empty($data['warnings'])): ?>
+        <div class="warning-box">
+            <?php foreach ($data['warnings'] as $w): ?>
+                <p><?= htmlspecialchars($w) ?></p>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
-<h3>Thumb view</h3>
+    <h1 class="page-title">USERS</h1>
 
-<div style="display:flex; flex-wrap:wrap; gap:20px;">
-    <?php foreach ($users as $u): ?>
+    <h3>Thumb view</h3>
 
-        <?php
-            $originalPath = $u->picture;
-            $fileName = basename($originalPath);
-            $cachePath = $cacheDir . '/' . $fileName;
+    <div class="thumb-grid">
+        <?php foreach ($users as $u): ?>
 
-            generateThumbnail($originalPath, $cachePath);
-        ?>
+            <?php
+                $originalPath = $u->picture;
+                $fileName = basename($originalPath);
+                $cachePath = $cacheDir . '/' . $fileName;
 
-        <div style="border:1px solid #ccc; padding:10px; width:150px; text-align:center;">
-            <div>
+                generateThumbnail($originalPath, $cachePath);
+            ?>
+
+            <div class="thumb-item">
                 <img 
                     src="data/cache/<?= htmlspecialchars($fileName) ?>" 
                     alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
                 />
-            </div> 
-            <div>
-                <?= htmlspecialchars(ucfirst($u->name)) ?>
-            </div>  
-            <div>
-                <?= htmlspecialchars(ucfirst($u->surname)) ?>
-            </div>
-            <div>
-                <?php
-                $dt = new DateTime($u->last_login);
-                echo $dt->format('d/m/Y H:i:s');
-                ?>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
 
-<div class="back-btn-container">
-    <a class="back-btn" href="/">BACK</a>
+                <div>
+                    <?= htmlspecialchars(ucfirst($u->name)) ?>
+                </div>  
+                <div>
+                    <?= htmlspecialchars(ucfirst($u->surname)) ?>
+                </div>
+                <div>
+                    <?php
+                        $dt = new DateTime($u->last_login);
+                        echo $dt->format('d/m/Y H:i:s');
+                    ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="back-btn-container">
+        <a class="back-btn" href="/">BACK</a>
+    </div>
+
 </div>

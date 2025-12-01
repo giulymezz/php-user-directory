@@ -31,7 +31,8 @@ function sortLink(string $field, ?string $currentSort, string $currentDir, array
 
 <link rel="stylesheet" href="assets/css/style.css">
 
-<div class="table-wrapper">
+<div class="container">
+
     <?php if (!empty($data['warnings'])): ?>
         <div class="warning-box">
             <?php foreach ($data['warnings'] as $w): ?>

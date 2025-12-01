@@ -35,11 +35,11 @@ if (
             <option value="0">Disattivi</option>
         </select>
 
-        <label>From (d/m/Y H:i:s):</label>
-        <input type="text" name="from" placeholder="01/10/2015 00:00:00">
+        <label>From:</label>
+        <input type="text" name="from" placeholder="d/m/Y H:i:s">
 
-        <label>To (d/m/Y H:i:s):</label>
-        <input type="text" name="to" placeholder="31/10/2015 23:59:59">
+        <label>To:</label>
+        <input type="text" name="to" placeholder="d/m/Y H:i:s">
 
         <label>Name starts with:</label>
         <input type="text" name="name">
