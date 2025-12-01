@@ -21,7 +21,7 @@ class UserController extends UserService {
         $users = $this->getAllUsers();
 
         $users = $this->filterByActive($users, $active);
-        $users = $this->filterByDateRange($users, $fromStr, $toStr, $warnings);
+        $users = $this->filterByDateRange($users, $fromStr, $toStr);
         $users = $this->filterByNameSurname($users, $name, $surname);
 
         if ($view === 'table') {
@@ -63,20 +63,26 @@ class UserController extends UserService {
         });
     }
 
-    protected function filterByDateRange(array $users, ?string $fromStr, ?string $toStr, array &$warnings = []): array {
+    /**
+     * Supported formats:
+     * - d/m/Y
+     * - d/m/Y H:i
+     * - d/m/Y H:i:s
+     */
+    protected function filterByDateRange(array $users, ?string $fromStr, ?string $toStr): array {
         if (!$fromStr && !$toStr) {
             return $users;
         }
 
-        $from = $fromStr ? DateTime::createFromFormat('d/m/Y H:i:s', $fromStr) : null;
-        $to = $toStr ? DateTime::createFromFormat('d/m/Y H:i:s', $toStr) : null;
+        $from = $this->parseFlexibleDate($fromStr);
+        $to   = $this->parseFlexibleDate($toStr);
         
-        if ($fromStr && (!$from || $from->format('d/m/Y H:i:s') !== $fromStr)) {
-            return $users;
+        if ($fromStr && !$from) {
+            return [];
         }
         
-        if ($toStr && (!$to || $to->format('d/m/Y H:i:s') !== $toStr)) {
-            return $users;
+        if ($toStr && !$to) {
+            return [];
         }
 
         return array_filter($users, function ($u) use ($from, $to) {
@@ -92,6 +98,52 @@ class UserController extends UserService {
 
             return true;
         });
+    }
+
+    private function parseFlexibleDate(?string $str): DateTime|false|null {
+
+        if (!$str) {
+            return null;
+        }
+        
+        $parts = explode(" ", $str);
+
+        if (count($parts) === 1) {
+            [$d, $m, $y] = array_pad(explode("/", $parts[0]), 3, null);
+
+            if (!checkdate((int)$m, (int)$d, (int)$y)) {
+                return false;
+            }
+
+            return DateTime::createFromFormat('d/m/Y H:i:s', "$str 00:00:00");
+        }
+
+        if (count($parts) === 2) {
+
+            [$date, $time] = $parts;
+            [$d, $m, $y] = explode("/", $date);
+
+            if (!checkdate((int)$m, (int)$d, (int)$y)) {
+                return false;
+            }
+
+            $timeParts = explode(":", $time);
+
+            if (count($timeParts) === 2) {
+                [$h, $i] = $timeParts;
+                $s = 0;
+            } else if (count($timeParts) === 3) {
+                [$h, $i, $s] = $timeParts;
+            } else {
+                return false;
+            }
+
+            $dt = DateTime::createFromFormat('d/m/Y H:i:s', "$date $h:$i:$s");
+
+            return $dt ?: false;
+        }
+
+        return false;
     }
 
     protected function filterByNameSurname(array $users, ?string $name, ?string $surname): array {
