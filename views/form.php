@@ -12,9 +12,11 @@
 
         <label for="from">From:</label>
         <input type="text" name="from" id="from" placeholder="d/m/Y H:i:s">
+        <div class="error-msg" id="error-from"></div>
 
         <label for="to">To:</label>
         <input type="text" name="to" id="to" placeholder="d/m/Y H:i:s">
+        <div class="error-msg" id="error-to"></div>
 
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" placeholder="starts with...">

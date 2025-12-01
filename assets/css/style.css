@@ -223,3 +223,16 @@
     display: inline-block;
     margin-right: 4px;
 }
+
+.error-msg {
+    color: #d40000;
+    font-size: 13px;
+    margin-top: 3px;
+    min-height: 0;
+    line-height: 1.2;
+    display: none;
+}
+
+.error-msg.visible {
+    display: block;
+}

@@ -8,9 +8,11 @@
 
 <body>
 
-<div class="content-wrapper">
-    <?= $content ?? '' ?>
-</div>
+    <div class="content-wrapper">
+        <?= $content ?? '' ?>
+    </div>
+
+    <script src="/assets/js/validate.js"></script>
 
 </body>
 </html>

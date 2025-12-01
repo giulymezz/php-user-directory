@@ -64,28 +64,28 @@ class UserController extends UserService {
             return $users;
         }
 
-        $from = $fromStr ? \DateTime::createFromFormat('d/m/Y H:i:s', $fromStr) : null;
-        $to = $toStr ? \DateTime::createFromFormat('d/m/Y H:i:s', $toStr) : null;
+        $from = $fromStr ? DateTime::createFromFormat('d/m/Y H:i:s', $fromStr) : null;
+        $to = $toStr ? DateTime::createFromFormat('d/m/Y H:i:s', $toStr) : null;
         
-        if ($fromStr && !$from) {
-            $warnings[] = "La data 'From' non è valida. Nessun filtro applicato.";
+        if ($fromStr && (!$from || $from->format('d/m/Y H:i:s') !== $fromStr)) {
             return $users;
         }
         
-        if ($toStr && !$to) {
-            $warnings[] = "La data 'To' non è valida. Nessun filtro applicato.";
+        if ($toStr && (!$to || $to->format('d/m/Y H:i:s') !== $toStr)) {
             return $users;
         }
 
         return array_filter($users, function ($u) use ($from, $to) {
-            $login = new \DateTime($u->last_login);
+            $login = new DateTime($u->last_login);
 
             if ($from && $login < $from) {
                 return false;
             }
+
             if ($to && $login > $to) {
                 return false;
             }
+
             return true;
         });
     }
