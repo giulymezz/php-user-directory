@@ -1,13 +1,17 @@
 <?php
+
 require_once __DIR__ . '/../ImageHelper.php';
 
 /** @var array $data */
 $users = $data['users']; 
 
-$cacheDir = getCacheDir();
-?>
+$pageTitle = "Results - Thumb view";
 
-<link rel="stylesheet" href="/assets/css/style.css">
+$cacheDir = getCacheDir();
+
+ob_start();
+
+?>
 
 <div class="container">
 
@@ -19,7 +23,7 @@ $cacheDir = getCacheDir();
         </div>
     <?php endif; ?>
 
-    <h1 class="page-title">USERS</h1>
+    <h1 class="page-title">Results</h1>
 
     <h3>Thumb view</h3>
 
@@ -61,3 +65,9 @@ $cacheDir = getCacheDir();
     </div>
 
 </div>
+
+<?php 
+ 
+$content = ob_get_clean();
+
+require __DIR__ . '/layout.php';

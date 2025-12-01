@@ -10,22 +10,18 @@ if (
     (isset($_GET['view']) && in_array($_GET['view'], ['table', 'thumb']))
 ) {
     $controller->showUserAction();
-} else {
+    exit;
+}
+
+$pageTitle = "Users";
+
+ob_start();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
 
-<body>
+<h1 class="page-title">USERS</h1>
 
-    <h1 class="page-title">USERS</h1>
-
-    <div class="form-wrapper">
+<div class="form-wrapper">
     <form method="post" class="filter-form">
 
         <label>Active:</label>
@@ -58,8 +54,8 @@ if (
     </form>
 </div>
 
-</body>
-</html>
-
 <?php
-}
+
+$content = ob_get_clean();
+
+require __DIR__ . "/views/layout.php";
