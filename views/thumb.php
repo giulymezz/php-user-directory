@@ -60,8 +60,8 @@ ob_start();
         <?php endforeach; ?>
     </div>
 
-    <div class="back-btn-container">
-        <a class="back-btn" href="/">BACK</a>
+    <div class="button-container">
+        <a href="/" class="button button-secondary">Back</a>
     </div>
 
 </div>

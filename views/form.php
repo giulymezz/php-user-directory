@@ -28,7 +28,7 @@
             <option value="thumb">Thumb</option>
         </select>
 
-        <button type="submit" class="btn">Search</button>
+        <button type="submit" class="button button-primary">Search</button>
 
     </form>
 </div>
