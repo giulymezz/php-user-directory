@@ -1,34 +1,34 @@
 <h1 class="page-title">USERS</h1>
 
 <div class="form-wrapper">
-<form method="post" class="filter-form">
+    <form method="post" class="filter-form" id="user-form">
 
-    <label>Active:</label>
-    <select name="active">
-        <option value="">All</option>
-        <option value="1">Active</option>
-        <option value="0">Inactive</option>
-    </select>
+        <label for="active">Active:</label>
+        <select name="active" id="active">
+            <option value="">All</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+        </select>
 
-    <label>From:</label>
-    <input type="text" name="from" placeholder="d/m/Y H:i:s">
+        <label for="from">From:</label>
+        <input type="text" name="from" id="from" placeholder="d/m/Y H:i:s">
 
-    <label>To:</label>
-    <input type="text" name="to" placeholder="d/m/Y H:i:s">
+        <label for="to">To:</label>
+        <input type="text" name="to" id="to" placeholder="d/m/Y H:i:s">
 
-    <label>Name starts with:</label>
-    <input type="text" name="name">
+        <label for="name">Name starts with:</label>
+        <input type="text" name="name" id="name">
 
-    <label>Surname starts with:</label>
-    <input type="text" name="surname">
+        <label for="surname">Surname starts with:</label>
+        <input type="text" name="surname" id="surname">
 
-    <label>View:</label>
-    <select name="view">
-        <option value="table">Table</option>
-        <option value="thumb">Thumb</option>
-    </select>
+        <label for="view">View:</label>
+        <select name="view" id="view">
+            <option value="table">Table</option>
+            <option value="thumb">Thumb</option>
+        </select>
 
-    <button type="submit" class="btn">Search</button>
+        <button type="submit" class="btn">Search</button>
 
-</form>
+    </form>
 </div>
