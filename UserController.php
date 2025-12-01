@@ -172,7 +172,7 @@ class UserController extends UserService {
 
         $allowedSort = ['id', 'name', 'surname', 'active', 'last_login', 'rating'];
         if (!in_array($sort, $allowedSort, true)) {
-            $warnings[] = "Parametro di ordinamento non valido: $sort";
+            $warnings[] = "Invalid sort parameter: $sort";
             return $users;
         }
 
