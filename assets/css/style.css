@@ -236,3 +236,13 @@
 .error-msg.visible {
     display: block;
 }
+
+.no-results {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #222;
+    background: transparent;
+    border: none;
+    margin: 20px 0;
+}

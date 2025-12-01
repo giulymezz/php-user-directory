@@ -29,6 +29,10 @@ class UserController extends UserService {
             $dir = $_GET['dir'] ?? 'asc';
             $users = $this->sortUsers($users, $sort, $dir, $warnings);
         }
+
+        if (empty($users)) {
+            $warnings[] = "The search produced no results";
+        }
         
         $data = [
             'users' => $users,

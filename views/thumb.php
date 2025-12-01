@@ -15,54 +15,58 @@ ob_start();
 
 <div class="container">
 
-    <?php if (!empty($data['warnings'])): ?>
-        <div class="warning-box">
-            <?php foreach ($data['warnings'] as $w): ?>
-                <p><?= htmlspecialchars($w) ?></p>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-
     <h1 class="page-title">Results</h1>
 
     <h3>Thumb view</h3>
 
-    <div class="thumb-grid">
-        <?php foreach ($users as $u): ?>
+    <?php if (empty($users)): ?>
 
-            <?php
-                $originalPath = $u->picture;
-                $fileName = basename($originalPath);
-                $cachePath = $cacheDir . '/' . $fileName;
+        <p class="no-results">The search produced no results</p>
 
-                generateThumbnail($originalPath, $cachePath);
-            ?>
+        <div class="button-container">
+            <a href="/" class="button button-secondary">Back</a>
+        </div>
 
-            <div class="thumb-item">
-                <img 
-                    src="data/cache/<?= htmlspecialchars($fileName) ?>" 
-                    alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
-                />
+    <?php else: ?>
+        
+        <div class="thumb-grid">
+            <?php foreach ($users as $u): ?>
 
-                <div>
-                    <?= htmlspecialchars(ucfirst($u->name)) ?>
-                </div>  
-                <div>
-                    <?= htmlspecialchars(ucfirst($u->surname)) ?>
+                <?php
+                    $originalPath = $u->picture;
+                    $fileName = basename($originalPath);
+                    $cachePath = $cacheDir . '/' . $fileName;
+
+                    generateThumbnail($originalPath, $cachePath);
+                ?>
+
+                <div class="thumb-item">
+                    <img 
+                        src="data/cache/<?= htmlspecialchars($fileName) ?>" 
+                        alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
+                    />
+
+                    <div>
+                        <?= htmlspecialchars(ucfirst($u->name)) ?>
+                    </div>  
+                    <div>
+                        <?= htmlspecialchars(ucfirst($u->surname)) ?>
+                    </div>
+                    <div>
+                        <?php
+                            $dt = new DateTime($u->last_login);
+                            echo $dt->format('d/m/Y H:i:s');
+                        ?>
+                    </div>
                 </div>
-                <div>
-                    <?php
-                        $dt = new DateTime($u->last_login);
-                        echo $dt->format('d/m/Y H:i:s');
-                    ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+            <?php endforeach; ?>
+        </div>
 
-    <div class="button-container">
-        <a href="/" class="button button-secondary">Back</a>
-    </div>
+        <div class="button-container">
+            <a href="/" class="button button-secondary">Back</a>
+        </div>
+
+    <?php endif; ?>
 
 </div>
 
