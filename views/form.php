@@ -16,11 +16,11 @@
         <label for="to">To:</label>
         <input type="text" name="to" id="to" placeholder="d/m/Y H:i:s">
 
-        <label for="name">Name starts with:</label>
-        <input type="text" name="name" id="name">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" placeholder="starts with...">
 
-        <label for="surname">Surname starts with:</label>
-        <input type="text" name="surname" id="surname">
+        <label for="surname">Surname:</label>
+        <input type="text" name="surname" id="surname" placeholder="starts with...">
 
         <label for="view">View:</label>
         <select name="view" id="view">
