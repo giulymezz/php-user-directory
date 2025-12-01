@@ -26,9 +26,9 @@ ob_start();
 
         <label>Active:</label>
         <select name="active">
-            <option value="">Tutti</option>
-            <option value="1">Attivi</option>
-            <option value="0">Disattivi</option>
+            <option value="">All</option>
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
         </select>
 
         <label>From:</label>
@@ -49,7 +49,7 @@ ob_start();
             <option value="thumb">Thumb</option>
         </select>
 
-        <button type="submit" class="btn">Mostra utenti</button>
+        <button type="submit" class="btn">Search</button>
 
     </form>
 </div>
