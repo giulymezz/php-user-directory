@@ -6,6 +6,11 @@
     font-weight: 700;
 }
 
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
 .form-wrapper {
     display: flex;
     justify-content: center;
@@ -47,27 +52,6 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
-}
-
-.btn {
-    margin-top: 25px;
-    padding: 12px;
-    font-size: 16px;
-    background: #0078ff;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: #005fcc;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
 }
 
 .user-table {
@@ -112,19 +96,6 @@
     background: #fafafa;
 }
 
-.warning-box {
-    background: #fff3cd;
-    border: 1px solid #ffeeba;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
-
-.warning-box p {
-    margin: 0;
-    color: #a00;
-}
-
 .button-container {
     text-align: center;
     margin: 25px 0;
@@ -162,23 +133,6 @@
 
 .button-secondary:hover {
     background: #e5e5e5;
-}
-
-.back-btn {
-    background: black;
-    color: white;
-    padding: 10px 22px;
-    border-radius: 6px;
-    border: 2px solid black;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.back-btn:hover {
-    background: white;
-    color: black;
 }
 
 .thumb-grid {
