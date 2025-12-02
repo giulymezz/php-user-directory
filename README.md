@@ -175,17 +175,17 @@ docker build --no-cache -t phpuserdirectory .
 
 ### 🔧 How to modify / extend functionality
 
-Add new filters
+#### Add new filters
 
-→ Edit methods inside UserController.php under the ```filterBy...``` section.
+Edit methods inside UserController.php under the ```filterBy...``` section.
 
-Change design
+#### Change design
 
-→ Update the CSS file located in ```assets/css/```.
+Update the CSS file located in ```assets/css/```.
 
-Modify the global layout
+#### Modify the global layout
 
-→ Edit ```views/layout.php```.
+Edit ```views/layout.php```.
 
 ---
 
