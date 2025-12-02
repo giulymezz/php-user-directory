@@ -5,6 +5,8 @@
 This project is a simple PHP web application running on an Apache server inside a Docker container.
 It loads users from a data source, allows you to filter, sort and view the results in a table or thumbnail view. It includes a basic MVC structure.
 
+---
+
 ### 📂 Project Structure
 
 ```text
