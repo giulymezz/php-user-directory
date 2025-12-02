@@ -1,0 +1,10 @@
+docker-data/
+data/cache/
+
+*.log
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
