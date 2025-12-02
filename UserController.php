@@ -6,12 +6,14 @@ require_once __DIR__ . '/ImageHelper.php';
 class UserController extends UserService {  
     public function showUserAction() {
 
-        $active = isset($_POST['active']) && $_POST['active'] !== '' ? (int)$_POST['active'] : null;
-        $fromStr = !empty($_POST['from']) ? $_POST['from'] : null;
-        $toStr = !empty($_POST['to']) ? $_POST['to'] : null;
-        $name = !empty($_POST['name']) ? $_POST['name'] : null;
-        $surname = !empty($_POST['surname']) ? $_POST['surname'] : null;
-        $view = !empty($_POST['view']) ? $_POST['view'] : 'table';
+        $source = ($_SERVER['REQUEST_METHOD'] === 'POST') ? $_POST : $_GET;
+
+        $active  = isset($source['active']) && $source['active'] !== '' ? (int)$source['active'] : null;
+        $fromStr = !empty($source['from'])    ? $source['from']    : null;
+        $toStr   = !empty($source['to'])      ? $source['to']      : null;
+        $name    = !empty($source['name'])    ? $source['name']    : null;
+        $surname = !empty($source['surname']) ? $source['surname'] : null;
+        $view    = !empty($source['view'])    ? $source['view']    : 'table';
         
         $sort = null;
         $dir = 'asc';
@@ -25,8 +27,8 @@ class UserController extends UserService {
         $users = $this->filterByNameSurname($users, $name, $surname);
 
         if ($view === 'table') {
-            $sort = $_GET['sort'] ?? null;
-            $dir = $_GET['dir'] ?? 'asc';
+            $sort = $source['sort'] ?? null;
+            $dir  = $source['dir']  ?? 'asc';
             $users = $this->sortUsers($users, $sort, $dir, $warnings);
         }
 
