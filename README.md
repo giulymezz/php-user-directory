@@ -33,6 +33,8 @@ It loads users from a data source, allows you to filter, sort and view the resul
 └── README.md
 ```
 
+---
+
 ### 🧪 Features
 
 ✔ User filters
@@ -54,6 +56,8 @@ Accepts formats:
 ✔ Thumbnail generation
 
 Images are automatically resized once and cached in ```data/cache/```.
+
+---
 
 ### 📂 File Responsibilities
 
@@ -85,6 +89,8 @@ Images are automatically resized once and cached in ```data/cache/```.
 - The main user filter form
 - JS validation for date inputs
 
+---
+
 ### 🚀 Running the Project with Docker
 
 1. Build the Docker image
@@ -101,6 +107,8 @@ Images are automatically resized once and cached in ```data/cache/```.
 
 The app will now be available at: 👉 <http://localhost:8080>
 
+---
+
 ### 🐳 Dockerfile Overview
 
 This project uses ```php:8.2-apache``` and installs GD for image thumbnail generation.
@@ -113,12 +121,16 @@ Key features:
 - Copies project files into the container
 - Sets correct file and directory permissions
 
+---
+
 ### 📦 .dockerignore and .gitignore
 
 The project includes a ```.dockerignore``` to speed up Docker builds.
 This prevents unnecessary files from being sent to the Docker build context.
 
 The project also includes a ```.gitignore``` to ensure that generated or local files do not enter the repository.
+
+---
 
 ### 🔧 Build & Run Commands Summary
 
@@ -128,6 +140,8 @@ The project also includes a ```.gitignore``` to ensure that generated or local f
 | Run container           | ```docker run -d -p 8080:80 phpuserdirectory```      |
 | Stop container          | ```docker ps``` → get ID → ```docker stop <id>```    |
 | View logs               | ```docker logs <id>```                               |
+
+---
 
 ### 📌 Useful Docker Commands
 
@@ -149,11 +163,15 @@ Rebuild the image from scratch
 docker build --no-cache -t phpuserdirectory .
 ```
 
+---
+
 ### 📝 Known Limitations
 
 - The project is intentionally minimal (no routing system, no framework, no database).
 - Image thumbnails assume JPEG-only input.
 - Filtering is performed in PHP on an in-memory dataset.
+
+---
 
 ### 🔧 How to modify / extend functionality
 
@@ -166,9 +184,13 @@ Change design
 Modify the global layout
 → Edit ```views/layout.php```.
 
+---
+
 ### ⚠️ Important Notes
 
 The folder ```data/cache/``` contains auto-generated thumbnails and must not be tracked by Git.
+
+---
 
 ### 📜 License
 
