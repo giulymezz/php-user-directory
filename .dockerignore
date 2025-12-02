@@ -1,0 +1,14 @@
+.git/
+.gitignore
+
+docker-data/
+data/cache/
+
+*.log
+
+.vscode/
+.idea/
+
+*.swp
+.DS_Store
+Thumbs.db
