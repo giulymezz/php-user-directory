@@ -1,5 +1,5 @@
 docker-data/
-data/cache/
+data/cache/*
 
 *.log
 

@@ -42,7 +42,7 @@ ob_start();
 
                 <div class="thumb-item">
                     <img 
-                        src="data/cache/<?= htmlspecialchars($fileName) ?>" 
+                        src="/data/cache/<?= htmlspecialchars($fileName) ?>" 
                         alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
                     />
 

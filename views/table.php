@@ -118,7 +118,7 @@ ob_start();
                         </td>
                         <td>
                             <img 
-                                src="data/cache/<?= htmlspecialchars($fileName) ?>" 
+                                src="/data/cache/<?= htmlspecialchars($fileName) ?>" 
                                 alt="Picture of <?= htmlspecialchars(ucfirst($u->name) . ' ' . ucfirst($u->surname)) ?>"
                             />
                         </td>

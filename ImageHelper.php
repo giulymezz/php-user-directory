@@ -15,25 +15,36 @@ function getCacheDir(): string {
 }
 
 function generateThumbnail(string $originalPath, string $cachePath): void {
+    $fullOriginalPath = __DIR__ . '/' . ltrim($originalPath, '/');
+
+    if (!file_exists($fullOriginalPath)) {
+        error_log("Original image not found: $fullOriginalPath");
+        return;
+    }
+    
     if (!file_exists($cachePath)) {
-        $src = @imagecreatefromjpeg($originalPath);
-        if ($src) {
-            $origWidth = imagesx($src);
-            $origHeight = imagesy($src);
+        $src = @imagecreatefromjpeg($fullOriginalPath);
 
-            $newWidth = 100;
-            $newHeight = intval(($origHeight / $origWidth) * $newWidth);
-
-            $tmp = imagecreatetruecolor($newWidth, $newHeight);
-
-            imagecopyresampled(
-                $tmp, $src,
-                0, 0, 0, 0,
-                $newWidth, $newHeight,
-                $origWidth, $origHeight
-            );
-
-            imagejpeg($tmp, $cachePath, 85);
+        if ($src === false) {
+            error_log("Failed to load image: $fullOriginalPath");
+            return;
         }
+
+        $origWidth = imagesx($src);
+        $origHeight = imagesy($src);
+
+        $newWidth = 100;
+        $newHeight = intval(($origHeight / $origWidth) * $newWidth);
+
+        $tmp = imagecreatetruecolor($newWidth, $newHeight);
+
+        imagecopyresampled(
+            $tmp, $src,
+            0, 0, 0, 0,
+            $newWidth, $newHeight,
+            $origWidth, $origHeight
+        );
+
+        imagejpeg($tmp, $cachePath, 85);
     }
 }
